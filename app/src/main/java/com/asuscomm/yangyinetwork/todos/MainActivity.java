@@ -3,6 +3,7 @@ package com.asuscomm.yangyinetwork.todos;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainView {
+    private static final String TAG = "MainActivity";
+    
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.et_email)
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void initPresenter() {
+        Log.d(TAG, "initPresenter: ");
         mPresenter = new MainPresenter(this);
 
         InitialValueObservable<CharSequence> emailObservable = RxTextView.textChanges(etEmail);
@@ -49,5 +53,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mPresenter.setEmailObservable(emailObservable);
         mPresenter.setPwObservable(pwObserbable);
         mPresenter.enableSubscriptions();
+    }
+
+    @Override
+    public void setEmailTvText(String msg) {
+        Log.d(TAG, "setEmailTvText() called with: msg = [" + msg + "]");
+        tvEmailIsvalid.setText(msg);
+    }
+
+    @Override
+    public void setPwTvText(String msg) {
+        Log.d(TAG, "setPwTvText() called with: msg = [" + msg + "]");
+        tvPwIsvalid.setText(msg);
     }
 }

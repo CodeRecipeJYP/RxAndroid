@@ -5,4 +5,7 @@ package com.asuscomm.yangyinetwork.todos.view;
  */
 
 public interface MainView {
+    void setPwTvText(String msg);
+
+    void setEmailTvText(String msg);
 }
