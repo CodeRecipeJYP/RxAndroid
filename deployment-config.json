@@ -1,0 +1,9 @@
+{
+    "type": "sftp",
+    "host": "smarts.asuscomm.com",
+    "username": "pi",
+    "password": "raspberry",
+    "port": 23,
+    "remotePath": "/home/pi/workspace/sftptest",
+    "uploadOnSave": true
+}

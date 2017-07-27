@@ -1,0 +1,16 @@
+{
+  "transport": "scp",
+  "hostname": "smarts.asuscomm.com",
+  "port": 23,
+  "username": "pi",
+  "password": "raspberry",
+  "target": "/home/pi/workspace/sftptest",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "watch":[
+    "/app/*",
+    "/gradlew"
+  ]
+}

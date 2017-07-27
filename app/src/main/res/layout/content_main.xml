@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/tv_email_isvalid"
-            android:text="불가"
+            android:text="초기값"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -66,7 +66,7 @@
 
         <TextView
             android:id="@+id/tv_pw_isvalid"
-            android:text="불가"
+            android:text="초기값"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

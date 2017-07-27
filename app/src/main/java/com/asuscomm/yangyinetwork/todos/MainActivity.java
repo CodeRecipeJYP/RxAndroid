@@ -11,10 +11,15 @@ import android.widget.TextView;
 import com.asuscomm.yangyinetwork.todos.presenter.MainPresenter;
 import com.asuscomm.yangyinetwork.todos.view.MainView;
 import com.jakewharton.rxbinding2.InitialValueObservable;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     private static final String TAG = "MainActivity";
@@ -53,12 +58,34 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mPresenter.setEmailObservable(emailObservable);
         mPresenter.setPwObservable(pwObserbable);
         mPresenter.enableSubscriptions();
+
+//        Observable<Object> clicks = RxView.clicks(btnSignin);
+//        clicks.subscribe(
+//                new Consumer<Object>() {
+//                    @Override
+//                    public void accept(@NonNull Object o) throws Exception {
+//                        Log.d(TAG, "accept() called with: o = [" + o + "]");
+        mPresenter.enableValidations();
+//                    }
+//                }
+//        );
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
     }
 
     @Override
     public void setEmailTvText(String msg) {
         Log.d(TAG, "setEmailTvText() called with: msg = [" + msg + "]");
         tvEmailIsvalid.setText(msg);
+    }
+
+    @Override
+    public void activeBtnSignin(boolean b) {
+        btnSignin.setEnabled(b);
     }
 
     @Override
